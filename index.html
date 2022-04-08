@@ -6,7 +6,7 @@
 </head>
 <body>
 	
-	<h1>Тест считывания данных из формы с помощью Python</h1>
+	<h1>Оценка предприятия</h1>
 	
 	
 		<table>
@@ -21,19 +21,49 @@
 				<td><input type="number" id="TR0"></td>
 			</tr>
 			<tr>
-				<td>Запасы</td>
-				<td><input type	="text" id="St1"></td>
-				<td><input type="number" id="St0"></td>
+				<td>Прибыль до налогооблажения</td>
+				<td><input type="number" id="EB1"></td>
+				<td><input type="number" id="EB0"></td>
 			</tr>
 			<tr>
-				<td>Общие активы</td>
-				<td><input type="number" id="TA1"></td>
-				<td><input type="number" id="TA0"></td>
+				<td>Чистая прибыль</td>
+				<td><input type="number" id="NP1"></td>
+				<td><input type="number" id="NP0"></td>
+			</tr>
+			<tr>
+				<td>Внеоборотные активы</td>
+				<td><input type="number" id="FA1"></td>
+				<td><input type="number" id="FA0"></td>
 			</tr>
 			<tr>
 				<td>Оборотные активы</td>
 				<td><input type="number" id="CA1"></td>
 				<td><input type="number" id="CA0"></td>
+			</tr>
+			<tr>
+				<td>Запасы</td>
+				<td><input type	="number" id="St1"></td>
+				<td><input type="number" id="St0"></td>
+			</tr>
+			<tr>
+				<td>Дебиторская задолженность</td>
+				<td><input type	="number" id="AR1"></td>
+				<td><input type="number" id="AR0"></td>
+			</tr>
+			<tr>
+				<td>Денежные средства</td>
+				<td><input type	="number" id="CF1"></td>
+				<td><input type="number" id="CF0"></td>
+			</tr>
+			<tr>
+				<td>Краткосрочные финансовые вложения</td>
+				<td><input type	="number" id="SF1"></td>
+				<td><input type="number" id="SF0"></td>
+			</tr>
+			<tr>
+				<td>Общие активы</td>
+				<td><input type="number" id="TA1"></td>
+				<td><input type="number" id="TA0"></td>
 			</tr>
 			<tr>
 				<td>Собственный капитал</td>
@@ -46,14 +76,14 @@
 				<td><input type="number" id="BC0"> <br/></td>
 			</tr>
 			<tr>
-				<td>Чистая прибыль</td>
-				<td><input type="number" id="NP1"></td>
-				<td><input type="number" id="NP0"></td>
-			</tr>
-			<tr>
 				<td>Краткосрочные обязательства</td>
 				<td><input type="number" id="CL1"></td>
 				<td><input type="number" id="CL0"></td>
+			</tr>
+			<tr>
+				<td>Кредиторская задолженность</td>
+				<td><input type="number" id="AP1"></td>
+				<td><input type="number" id="AP0"></td>
 			</tr>
 		</table>
 	<button onclick="func()">Обработать данные</button>
@@ -76,6 +106,18 @@
 			var NP0 = Number(document.getElementById("NP0").value);
 			var CL1 = Number(document.getElementById("CL1").value);
 			var CL0 = Number(document.getElementById("CL0").value);
+			var FA1 = Number(document.getElementById("FA1").value);
+			var FA0 = Number(document.getElementById("FA0").value);
+			var AR1 = Number(document.getElementById("AR1").value);
+			var AR0 = Number(document.getElementById("AR0").value);
+			var CF1 = Number(document.getElementById("CF1").value);
+			var CF0 = Number(document.getElementById("CF0").value);
+			var SF1 = Number(document.getElementById("SF1").value);
+			var SF0 = Number(document.getElementById("SF0").value);
+			var AP1 = Number(document.getElementById("AP1").value);
+			var AP0 = Number(document.getElementById("AP0").value);
+			var EB1 = Number(document.getElementById("EB1").value);
+			var EB0 = Number(document.getElementById("EB0").value);
 			
 			var TSt = St1 + St0;
 			var AvS = TSt / 2;
@@ -86,66 +128,203 @@
 			var K5 = NP1 / TR1;
 			var R1 = 25 * K1 + 25 * K2 + 20 * K3 + 20 * K4 + 10 * K5;
 			
+			var COC = TE1 - FA1;
+			var N11 = COC / CA1;
+			var N21 = CA1 / CL1;
+			var E01 = TA0 + TA1;
+			var AvE = E01 / 20;
+			var N31 = TR1 / AvE;
+			var N41 = NP1 / TR1;
+			var N51 = NP1 / TE1;
+			var NR1 = 2 * N11 + 1 / 10  * N21 + 8 / 100 * N31 + 45 / 100 * N41 + N51;
+			
+			var M11 = EB1 / TE1;
+			var M21 = AP1 / AR1;
+			var	LA = CF1 + SF1;
+			var M31 = CL1 / LA;
+			var M41 = EB1 / TR1;
+			var M51 = BC1 / TE1;
+			var M61 = TA1 / TR1;
+			var MR1 = 25 / 100 * M11 + 1 / 10 * M21 + 2 / 10 * M31 + 25 / 100 * M41 + 1 / 10 * M51 + 1 / 10 * M61;
+			
+			var ARCL1 = AR1 + CL1;
+			var P11 = ARCL1 / CL1;
+			var P21 = TE1 / BC1;
+			var P31 = TE1 / FA1;
+			var P41 = TR1 / AvS;
+			var AvAR1 = AR1 / 2 + AR0 / 2;
+			var P51 = TR1 / AvAR1;
+			var PR1 = 25 * P11 + 25 * P21 + 10 * P31 + 20 * P41 + 20 * P51;
+			
 			document.getElementById("K1").innerHTML = K1;
 			document.getElementById("K2").innerHTML = K2;
 			document.getElementById("K3").innerHTML = K3;
 			document.getElementById("K4").innerHTML = K4;
 			document.getElementById("K5").innerHTML = K5;
 			document.getElementById("R1").innerHTML = R1;
+			
+			document.getElementById("N11").innerHTML = N11;
+			document.getElementById("N21").innerHTML = N21;
+			document.getElementById("N31").innerHTML = N31;
+			document.getElementById("N41").innerHTML = N41;
+			document.getElementById("N51").innerHTML = N51;
+			document.getElementById("NR1").innerHTML = NR1;
+			
+			document.getElementById("M11").innerHTML = M11;
+			document.getElementById("M21").innerHTML = M21;
+			document.getElementById("M31").innerHTML = M31;
+			document.getElementById("M41").innerHTML = M41;
+			document.getElementById("M51").innerHTML = M51;
+			document.getElementById("M61").innerHTML = M61;
+			document.getElementById("MR1").innerHTML = MR1;
+			
+			document.getElementById("P11").innerHTML = P11;
+			document.getElementById("P21").innerHTML = P21;
+			document.getElementById("P31").innerHTML = P31;
+			document.getElementById("P41").innerHTML = P41;
+			document.getElementById("P51").innerHTML = P51;
+			document.getElementById("PR1").innerHTML = PR1;
 			}
 	</script>
-	
+	<h1>Модель Селезневой и Ионовой</h1>
 	<table>
 		<tr>
 			<td><p>Показатель</p></td>
 			<td><p>XX+1</p></td>
 		</tr>
 		<tr>
-			<td>Коэффициент оборачиваемости запасов =</td>
+			<td><p>Коэффициент оборачиваемости запасов =</p></td>
 			<td><p id="K1"></p></td>
 		</tr>
 		<tr>
-			<td>Коэффициент текущей ликвидности =</td>
+			<td><p>Коэффициент текущей ликвидности =</p></td>
 			<td><p id="K2"></p></td>
 		</tr>
 		<tr>
-			<td>Коэффициент структуры капитала =</td>
+			<td><p>Коэффициент структуры капитала =</p></td>
 			<td><p id="K3"></p></td>
 		</tr>
 		<tr>
-			<td>Коэффициент рентабельности активов =</td>
+			<td><p>Коэффициент рентабельности активов =</p></td>
 			<td><p id="K4"></p></td>
 		</tr>
 		<tr>
-			<td>Коэффициент рентабельности активов =</td>
+			<td><p>Коэффициент рентабельности активов =</p></td>
 			<td><p id="K5"></p></td>
 		</tr>
 		<tr>
-			<td>Общая оценка по моделе Селезневой и Йоновой =</td>
+			<td><p>Общая оценка по моделе Селезневой и Йоновой =</p></td>
 			<td><p id="R1"></p></td>
 		</tr>
-		
-	
+	</table>
+	<h1>Модель Р.С. Сайфуллина, и Г.Г. Кадыкова</h1>
+	<table>
+		<tr>
+			<td><p>Показатель</p></td>
+			<td><p>XX +1 Год</p></td>
+		</tr>
+		<tr>
+			<td><p>Коэффициент обеспеченности собственными средствами</p></td>
+			<td><p id="N11"></p></td>
+		</tr>
+		<tr>
+			<td><p>Коэффициент текущей ликвидности</p></td>
+			<td><p id="N21"></p></td>
+		</tr>
+		<tr>
+			<td><p>Коэффициент оборачиваемости активов</p></td>
+			<td><p id="N31"></p></td>
+		</tr>
+		<tr>
+			<td><p>Коммерческая маржа</p></td>
+			<td><p id="N41"></p></td>
+		</tr>
+		<tr>
+			<td><p>Рентабельность собственного капитала</p></td>
+			<td><p id="N51"></p></td>
+		</tr>
+		<tr>
+			<td><p>Общая оценка по моделе Сайфуллина и Кадыкова</p></td>
+			<td><p id="NR1"></p></td>
+		</tr>
 	</table>
 	
+	<h1>Модель Зайцевой</h1>
 	
+	<table>
+		<tr>
+			<td><p>Показатель</p></td>
+			<td><p>XX + 1 Год</p></td>
+		</tr>
+		<tr>
+			<td><p>M1</p></td>
+			<td><p id="M11"></p></td>
+		</tr>
+		<tr>
+			<td><p>M2</p></td>
+			<td><p id="M21"></p></td>
+		</tr>
+		<tr>
+			<td><p>M3</p></td>
+			<td><p id="M31"></p></td>
+		</tr>
+		<tr>
+			<td><p>M4</p></td>
+			<td><p id="M41"></p></td>
+		</tr>
+		<tr>
+			<td><p>M5</p></td>
+			<td><p id="M51"></p></td>
+		</tr>
+		<tr>
+			<td><p>M6</p></td>
+			<td><p id="M61"></p></td>
+		</tr>
+		<tr>
+			<td><p>Общая оценка по моделе Зайцевой</p></td>
+			<td><p id="MR1"></p></td>
+		</tr>
+	</table>
 	
-	<p id="K1"></p>
-	<p id="K2"></p>
-	<p id="K3"></p>
-	<p id="K4"></p>
-	<p id="K5"></p>
-	<p id="R1"></p>
+	<h1>Модель Де Паляна</h1>
+	
+	<table>
+		
+		<tr>
+			<td><p>Показатель</p></td>
+			<td><p>XX + 1 год</p></td>
+		</tr>
+		<tr>
+			<td><p>P1</p></td>
+			<td><p id="P11"></p></td>
+		</tr>
+		<tr>
+			<td><p>P2</p></td>
+			<td><p id="P21"></p></td>
+		</tr>
+		<tr>
+			<td><p>P3</p></td>
+			<td><p id="P31"></p></td>
+		</tr>
+		<tr>
+			<td><p>P4</p></td>
+			<td><p id="P41"></p></td>
+		</tr>
+		<tr>
+			<td><p>P5</p></td>
+			<td><p id="P51"></p></td>
+		</tr>
+		<tr>
+			<td><p>Общая оценка по моделе Де Паляна</p></td>
+			<td><p id="PR1"></p></td>
+		</tr>
+	
+	</table>
 	
 
 
 
 </body>
-
-
-
-
-
 
 
 </html>
