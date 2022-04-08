@@ -8,7 +8,7 @@
 	
 	<h1>Оценка предприятия</h1>
 	
-	
+	<form>
 		<table>
 			<tr>
 				<td><p>Показатель</p></td>
@@ -87,7 +87,8 @@
 			</tr>
 		</table>
 	<button onclick="func()">Обработать данные</button>
-	
+	<input type="reset">
+	</form>
 	<script>
 		function func(){
 			var TR1 = Number(document.getElementById("TR1").value);
@@ -121,12 +122,12 @@
 			
 			var TSt = St1 + St0;
 			var AvS = TSt / 2;
-			var K1 = TR1 / AvS;
-			var K2 = CA1 / CL1;
-			var K3 = TE1 / BC1;
-			var K4 = NP1 / TA1;
-			var K5 = NP1 / TR1;
-			var R1 = 25 * K1 + 25 * K2 + 20 * K3 + 20 * K4 + 10 * K5;
+			var K11 = TR1 / AvS;
+			var K21 = CA1 / CL1;
+			var K31 = TE1 / BC1;
+			var K41 = NP1 / TA1;
+			var K51 = NP1 / TR1;
+			var R1 = 25 * K11 + 25 * K21 + 20 * K31 + 20 * K41 + 10 * K51;
 			
 			var COC = TE1 - FA1;
 			var N11 = COC / CA1;
@@ -139,6 +140,7 @@
 			var NR1 = 2 * N11 + 1 / 10  * N21 + 8 / 100 * N31 + 45 / 100 * N41 + N51;
 			
 			var M11 = EB1 / TE1;
+			
 			var M21 = AP1 / AR1;
 			var	LA = CF1 + SF1;
 			var M31 = CL1 / LA;
@@ -156,11 +158,39 @@
 			var P51 = TR1 / AvAR1;
 			var PR1 = 25 * P11 + 25 * P21 + 10 * P31 + 20 * P41 + 20 * P51;
 			
-			document.getElementById("K1").innerHTML = K1;
-			document.getElementById("K2").innerHTML = K2;
-			document.getElementById("K3").innerHTML = K3;
-			document.getElementById("K4").innerHTML = K4;
-			document.getElementById("K5").innerHTML = K5;
+			K11 = K11.toFixed(3);
+			K21 = K21.toFixed(3);
+			K31  = K31.toFixed(3);
+			K41  = K41.toFixed(3);
+			K51  = K51.toFixed(3);			
+			R1  = R1 .toFixed(3);
+			N11 = N11.toFixed(3);
+			N21 = N21.toFixed(3);
+			E01 = E01.toFixed(3);
+			N31 =  N31.toFixed(3);
+			N41 =  N41.toFixed(3);
+			N51 =  N51.toFixed(3);
+			NR1 =  NR1.toFixed(3);
+			M11 =  M11.toFixed(3);
+			M21 =  M21.toFixed(3);
+			M31 =  M31.toFixed(3);
+			M41 =  M41.toFixed(3);
+			M51 =  M51.toFixed(3);
+			M61 =  M61.toFixed(3);
+			MR1 =  MR1.toFixed(3);
+			P11 =  P11.toFixed(3);
+			P21 =  P21.toFixed(3);
+			P31 =  P31.toFixed(3);
+			P41 =  P41.toFixed(3);
+			P51 =  P51.toFixed(3);
+			PR1 =  PR1.toFixed(3);
+
+
+			document.getElementById("K11").innerHTML = K11;
+			document.getElementById("K21").innerHTML = K21;
+			document.getElementById("K31").innerHTML = K31;
+			document.getElementById("K41").innerHTML = K41;
+			document.getElementById("K51").innerHTML = K51;
 			document.getElementById("R1").innerHTML = R1;
 			
 			document.getElementById("N11").innerHTML = N11;
@@ -194,23 +224,23 @@
 		</tr>
 		<tr>
 			<td><p>Коэффициент оборачиваемости запасов =</p></td>
-			<td><p id="K1"></p></td>
+			<td><p id="K11"></p></td>
 		</tr>
 		<tr>
 			<td><p>Коэффициент текущей ликвидности =</p></td>
-			<td><p id="K2"></p></td>
+			<td><p id="K21"></p></td>
 		</tr>
 		<tr>
 			<td><p>Коэффициент структуры капитала =</p></td>
-			<td><p id="K3"></p></td>
+			<td><p id="K31"></p></td>
 		</tr>
 		<tr>
 			<td><p>Коэффициент рентабельности активов =</p></td>
-			<td><p id="K4"></p></td>
+			<td><p id="K41"></p></td>
 		</tr>
 		<tr>
 			<td><p>Коэффициент рентабельности активов =</p></td>
-			<td><p id="K5"></p></td>
+			<td><p id="K51"></p></td>
 		</tr>
 		<tr>
 			<td><p>Общая оценка по моделе Селезневой и Йоновой =</p></td>
@@ -325,6 +355,11 @@
 
 
 </body>
+
+
+
+
+
 
 
 </html>
