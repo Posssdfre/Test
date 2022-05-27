@@ -47,6 +47,7 @@
 			var EB1 = Number(document.getElementById("EB1").value);
 			var EB0 = Number(document.getElementById("EB0").value);
 			
+            // Модель Селезневой и Йоновой
 			var TSt2 = St2 + St1;
 			var AvS2 = TSt2 / 2;
 			var K12 = TR2 / AvS2;
@@ -77,7 +78,7 @@
 			
 			
 			
-			
+			// модель Сайфуллина и Кадыкова
 			var COC2 = TE2 - FA2;
 			var N12 = COC2 / CA2;
 			var N22 = CA2 / CL2;
@@ -109,12 +110,45 @@
 			var NR0 = 2 * N10 + 1 / 10  * N20 + 8 / 100 * N30 + 45 / 100 * N40 + N50;
 			
 			
+			// модель Постюшкова
+			var COC2 = TE2 - FA2;
+            var L12 = CA2 / CL2;
+			var L22 = COC2 / CA2;
+            var E02 = TA1 + TA2;
+			var AvE2 = E02 / 2;
+			var L32 = TR2 / AvE2;
+            var L42 = NP2 / TE2;
+			var L52 = NP2 / TR2;
+			var LR21 = 0.125 * L12 + 2.5 * L22 + 0.4 * L32 + 1.25 * L42;
+            var LR22 = 0.1 * L12 + 2 * L22 + 0.08 * L32 + 1 * L42 + 0.45 * L52;
+            
+            var COC1 = TE1 - FA1;
+            var L11 = CA1 / CL1;
+			var L21 = COC1 / CA1;
+            var E01 = TA0 + TA1;
+			var AvE1 = E01 / 2;
+			var L31 = TR1 / AvE1;
+            var L41 = NP1 / TE1;
+			var L51 = NP1 / TR1;
+			var LR11 = 0.125 * L11 + 2.5 * L21 + 0.4 * L31 + 1.25 * L41;
+            var LR12 = 0.1 * L11 + 2 * L21 + 0.08 * L31 + 1 * L41 + 0.45 * L51;
+            
+             var COC0 = TE0 - FA0;
+            var L10 = CA0 / CL0;
+			var L20 = COC0 / CA0;
+            var E00 = TA0 + TA00;
+			var AvE0 = E00 / 2;
+			var L30 = TR0 / AvE0;
+            var L40 = NP0 / TE0;
+			var L50 = NP0 / TR0;
+			var LR01 = 0.125 * L10 + 2.5 * L20 + 0.4 * L30 + 1.25 * L40;
+            var LR02 = 0.1 * L10 + 2 * L20 + 0.08 * L30 + 1 * L41 + 0.45 * L51;
+			
+            
 			
 			
 			
-			
-			
-			
+			// модель зайцевой
 			var M12 = EB2 / TE2;
 			var M22 = AP2 / AR2;
 			var	LA2 = CF2 + SF2;
@@ -142,8 +176,38 @@
 			var M60 = TA0 / TR0;
 			var MR0 = 25 / 100 * M10 + 1 / 10 * M20 + 2 / 10 * M30 + 25 / 100 * M40 + 1 / 10 * M50 + 1 / 10 * M60;
 			
-			
-			
+            // модель кондракова
+            
+            var O12 = CA2 / CL2;
+            var O22 = (TE2 - FA2) / CA2;
+            var XO12 = O12 / 2;
+            var XO22 = O22 / 0.1;
+            var qXO12 = ( 1 - XO12 ) * ( 1 - XO12 );
+            var qX022 = ( 1 - XO22 ) * ( 1 - XO22 );
+            var rX02 = qXO12 - qX022;
+            var RO2 = Math.pow( rX02, 0.5 );
+            
+            var O11 = CA1 / CL1;
+            var O21 = (TE1 - FA1) / CA1;
+            var XO11 = O11 / 2;
+            var XO21 = O21 / 0.1;
+            var qXO11 = ( 1 - XO11 ) * ( 1 - XO11 );
+            var qX021 = ( 1 - XO21 ) * ( 1 - XO21 );
+            var rX01 = qXO11 - qX021;
+            var RO1 = Math.pow( rX01, 0.5 );
+            
+            var O10 = CA0 / CL0;
+            var O20 = (TE0 - FA0) / CA0;
+            var XO10 = O10 / 2;
+            var XO20 = O20 / 0.1;
+            var qXO10 = ( 1 - XO10 ) * ( 1 - XO10 );
+            var qX020 = ( 1 - XO20 ) * ( 1 - XO20 );
+            var rX00 = qXO10 - qX020;
+            var RO0 = Math.pow( rX00, 0.5 );
+            
+            
+            
+			// модель Де Паляна
 			var ARCL2 = AR2 + CL2;
 			var P12 = ARCL2 / CL2;
 			var P22 = TE2 / BC2;
@@ -171,6 +235,7 @@
 			var P50 = TR0 / AvAR0;
 			var PR0 = 25 * P10 + 25 * P20 + 10 * P30 + 20 * P40 + 20 * P50;
 			
+            
 			K12 = K12.toFixed(3);
 			K22 = K22.toFixed(3);
 			K32  = K32.toFixed(3);
@@ -224,6 +289,9 @@
 			P41 =  P41.toFixed(3);
 			P51 =  P51.toFixed(3);
 			PR1 =  PR1.toFixed(3);
+            // модель Постюшкова
+            
+            
 			
 			K10 = K10.toFixed(3);
 			K20 = K20.toFixed(3);
@@ -251,6 +319,47 @@
 			P40 =  P40.toFixed(3);
 			P50 =  P50.toFixed(3);
 			PR0 =  PR0.toFixed(3);
+            
+            L12 = L12.toFixed(3);
+			L22 = L22.toFixed(3);
+			L32 = L32.toFixed(3);
+			L42 = L42.toFixed(3);
+			L52 = L52.toFixed(3);
+			LR21 = LR21.toFixed(3);
+            LR22 = LR22.toFixed(3);
+			L11 = L11.toFixed(3);
+			L21 = L21.toFixed(3);
+			L31 = L31.toFixed(3);
+			L41 = L41.toFixed(3);
+			L51 = L51.toFixed(3);
+			LR11 = LR11.toFixed(3);
+            LR12 = LR12.toFixed(3);
+			L10 = L10.toFixed(3);
+			L20 = L20.toFixed(3);
+			L30 = L30.toFixed(3);
+			L40 = L40.toFixed(3);
+			L50 = L50.toFixed(3);
+			LR01 = LR01.toFixed(3);
+            LR02 = LR02.toFixed(3);
+            
+            O12 = O12.toFixed(3);
+			O22 = O22.toFixed(3);
+			RO2 = RO2.toFixed(3);
+			O11 = O11.toFixed(3);
+			O21 = O21.toFixed(3);
+			RO1 = RO1.toFixed(3);
+			O10 = O10.toFixed(3);
+			O20 = O20.toFixed(3);
+			RO0 = RO0.toFixed(3);
+			
+			XO12 = XO12.toFixed(3);
+			XO11 = XO11.toFixed(3);
+			XO10 = XO10.toFixed(3);
+			XO22 = XO22.toFixed(3);
+			XO21 = XO21.toFixed(3);
+			XO20 = XO20.toFixed(3);
+            
+            
 			
             document.getElementById("K12").innerHTML = K12;
 			document.getElementById("K22").innerHTML = K22;
@@ -294,6 +403,50 @@
 			document.getElementById("N40").innerHTML = N40;
 			document.getElementById("N50").innerHTML = N50;
 			document.getElementById("NR0").innerHTML = NR0;
+            
+            // Вывод данных модель постюшкова
+            document.getElementById("L12").innerHTML = L12;
+			document.getElementById("L22").innerHTML = L22;
+			document.getElementById("L32").innerHTML = L32;
+			document.getElementById("L42").innerHTML = L42;
+			document.getElementById("L52").innerHTML = L52;
+			document.getElementById("LR22").innerHTML = LR22;
+            document.getElementById("LR21").innerHTML = LR21;
+            
+			document.getElementById("L11").innerHTML = L11;
+			document.getElementById("L21").innerHTML = L21;
+			document.getElementById("L31").innerHTML = L31;
+			document.getElementById("L41").innerHTML = L41;
+			document.getElementById("L51").innerHTML = L51;
+			document.getElementById("LR12").innerHTML = LR12;
+            document.getElementById("LR11").innerHTML = LR11;
+            
+            document.getElementById("L10").innerHTML = L10;
+			document.getElementById("L20").innerHTML = L20;
+			document.getElementById("L30").innerHTML = L30;
+			document.getElementById("L40").innerHTML = L40;
+			document.getElementById("L50").innerHTML = L50;
+			document.getElementById("LR01").innerHTML = LR01;
+            document.getElementById("LR02").innerHTML = LR02;   
+            
+            // Вывод модели кондраковой 
+            document.getElementById("O12").innerHTML = O12;
+			document.getElementById("O22").innerHTML = O22;
+			document.getElementById("XO12").innerHTML = XO12;
+			document.getElementById("XO22").innerHTML = XO22;
+			document.getElementById("RO2").innerHTML = RO2;
+            
+			document.getElementById("O11").innerHTML = O11;
+			document.getElementById("O21").innerHTML = O21;
+			document.getElementById("XO11").innerHTML = XO11;
+			document.getElementById("XO21").innerHTML = XO21;
+			document.getElementById("RO1").innerHTML = RO1;
+            
+            document.getElementById("O10").innerHTML = O10;
+			document.getElementById("O20").innerHTML = O20;
+			document.getElementById("XO10").innerHTML = XO10;
+			document.getElementById("XO20").innerHTML = XO20;
+			document.getElementById("RO0").innerHTML = RO0;
             
             
 			document.getElementById("M12").innerHTML = M12;
